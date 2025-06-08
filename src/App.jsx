@@ -2,8 +2,8 @@ import  './App.css'
 import { FormControl, InputGroup, Container, Button, Card, Row } from  'react-bootstrap'
 import { useState, useEffect } from  'react'
  
-const  clientId  = '' ; //ENTER YOUR CLIENT ID FROM SPOTIFY FOR DEVELOPERS
-const  clientSecret  =  '' ; //ENTER YOUR CLIENT ID FROM SPOTIFY FOR DEVELOPERS
+const  clientId  =  '82b8d578564d4855af5e121639808372';
+const  clientSecret  =  '00718c6461034d9eb17139f76176ec59';
 
 function  App() {
 const [searchInput, setSearchInput] =  useState("")
@@ -43,7 +43,9 @@ const [albums, setAlbums] =  useState([])
       })
   
   // Get Artist Top tracks
-    await  fetch('https://api.spotify.com/v1/artists/'  +  artistID  +  '/top-tracks?include_groups=album&market=US&limit=50', artistParams)
+    await  fetch('https://api.spotify.com/v1/artists/'  +  artistID  +  '/top-tracks?include_groups=album&market=US&limit=50', artistParams
+		
+	)
     .then(result  =>  result.json())
     .then(data  => {
     setAlbums(data.tracks)
@@ -53,7 +55,7 @@ const [albums, setAlbums] =  useState([])
 
 	return (
     <>
-	<Container style={{
+	<Container className='search-bar' style={{
     marginBottom:  '30px',
   }}>
 		<InputGroup>
@@ -74,7 +76,7 @@ const [albums, setAlbums] =  useState([])
 			borderStyle:  'solid',
 			borderRadius:  '5px',
 			marginRight:  '10px',
-			paddingLeft:  '10px'
+			paddingLeft:  '10px',
 			}}
 			/>
 			
@@ -85,27 +87,23 @@ const [albums, setAlbums] =  useState([])
 		</InputGroup>
 	</Container>
 
-  <Container>
+  <Container >
 	<Row  style={{
-	display:  'flex',
-	flexDirection:  'row',
-	flexWrap:  'wrap',
-	justifyContent:  'space-around',
-	alignContent:  'center',
+	 display:  'flex',
+	 flexDirection:  'row',
+	 flexWrap:  'wrap',
+	 justifyContent:  'space-around',
+	 alignContent:  'center',
  
 	}}>
 		{albums.map((album) => {
 return(
-<Card  key={album.id}  style={{
-	backgroundColor:  'white',
-	margin:  '10px',
-	borderRadius:  '5px',
-	marginBottom:  '30px',
-	}} >
+<Card key={album.id} >
 	
 	<Card.Img  
 	width={200}  
 	src={album.album.images[0].url}  
+	className='Cover-image'
 	style={{
 	borderRadius:  '4%',
 	}}  />
